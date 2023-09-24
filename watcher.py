@@ -116,7 +116,7 @@ class FileWatcherChokidar(TransportCallbacks):
     ) -> 'FileWatcherController':
         self._last_controller_id += 1
         controller_id = self._last_controller_id
-        controller = FileWatcherController(on_destroy=lambda: self._on_watcher_removed(controller_id))
+        controller = FileWatcherController(on_destroy=lambda cid=controller_id: self._on_watcher_removed(cid))
         self._on_watcher_added(root_path, patterns, events, ignores, handler)
         return controller
 
